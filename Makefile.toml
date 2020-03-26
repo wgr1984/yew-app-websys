@@ -8,13 +8,13 @@ PORT = "8000"
 description = "Build"
 workspace = false
 command = "cargo"
-args = ["build", "--target", "wasm32-unknown-unknown"]
+args = ["build"]
 
 [tasks.compile_release]
 description = "Build, with the --release flag"
 workspace = false
 command = "cargo"
-args = ["build", "--release", "--target", "wasm32-unknown-unknown"]
+args = ["build", "--release"]
 
 [tasks.create_wasm]
 description = "Build with wasm-pack"
@@ -28,7 +28,7 @@ install_crate = { crate_name = "wasm-pack", binary = "wasm-pack", test_arg = "-V
 command = "wasm-pack"
 args = ["build", "--target", "web", "--out-name", "package"]
 
-[tasks.build_debug]
+[tasks.build]
 description = "Build, and create wasms"
 workspace = false
 dependencies = ["compile", "create_wasm"]
@@ -41,7 +41,7 @@ dependencies = ["compile_release", "create_wasm_release"]
 [tasks.watch]
 description = "Build, create wasms, and watch/recompile files for changes"
 workspace = false
-dependencies = ["build_debug", "create_wasm"]
+dependencies = ["build", "create_wasm"]
 watch = { ignore_pattern="pkg/*" }
 
 [tasks.serve]
@@ -54,7 +54,7 @@ args = ["--port", "${PORT}"]
 [tasks.start]
 description = "Combine the build and serve tasks"
 workspace = false
-dependencies = ["build_debug", "serve"]
+dependencies = ["build", "serve"]
 
 
 # ---- LINT ----

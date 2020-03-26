@@ -8,12 +8,12 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-yew = { version = "0.13.0", features = ["web_sys"] }
-js-sys = "0.3.36"
-wasm-bindgen = "^0.2.50"
+yew = { version = "0.14.2", features = ["web_sys"] }
+js-sys = "0.3.37"
+wasm-bindgen = "0.2.60"
 
 [dev-dependencies]
-wasm-bindgen-test = "0.2.50" # NOTE: keep in sync with wasm-bindgen version
+wasm-bindgen-test = "0.3.10" # NOTE: keep in sync with wasm-bindgen version
 
 [profile.release]  # Attempts to minimize file size
 lto = true
