@@ -2,4 +2,4 @@
 target/
 .idea/
 Cargo.lock
-pkg/
+public/pkg/

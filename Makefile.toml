@@ -13,7 +13,7 @@ dependencies = ["clean_cargo", "clean_pgk"]
 description = "clean pgk"
 workspace = false
 command = "rm"
-args = ["-fr", "pkg"]
+args = ["-fr", "public/pkg"]
 
 [tasks.clean_cargo]
 description = "Clean"
@@ -37,19 +37,19 @@ args = ["build", "--release"]
 description = "Build with wasm-pack"
 install_crate = { crate_name = "wasm-pack", binary = "wasm-pack", test_arg = "-V", min_version = "0.8.0" }
 command = "wasm-pack"
-args = ["build", "--target", "web", "--out-name", "package", "--dev"]
+args = ["build", "--target", "web", "--out-name", "package", "--dev", "--out-dir", "public/pkg"]
 
 [tasks.create_wasm_release]
 description = "Build with wasm-pack"
 install_crate = { crate_name = "wasm-pack", binary = "wasm-pack", test_arg = "-V", min_version = "0.8.0" }
 command = "wasm-pack"
-args = ["build", "--target", "web", "--out-name", "package", "--release"]
+args = ["build", "--target", "web", "--out-name", "package", "--release", "--out-dir", "public/pkg"]
 
 [tasks.create_wasm_profile]
 description = "Build with wasm-pack"
 install_crate = { crate_name = "wasm-pack", binary = "wasm-pack", test_arg = "-V", min_version = "0.8.0" }
 command = "wasm-pack"
-args = ["build", "--target", "web", "--out-name", "package", "--profiling"]
+args = ["build", "--target", "web", "--out-name", "package", "--profiling", "--out-dir", "public/pkg"]
 
 [tasks.build]
 description = "Build, and create wasms"
@@ -70,14 +70,14 @@ dependencies = ["compile", "create_wasm_profile"]
 description = "Build, create wasms, and watch/recompile files for changes"
 workspace = false
 dependencies = ["build", "create_wasm"]
-watch = { ignore_pattern="pkg/*" }
+watch = { ignore_pattern="public/pkg/*" }
 
 [tasks.serve]
 description = "Start server"
 install_crate = { crate_name = "microserver", binary = "microserver", test_arg = "-h" }
 workspace = false
 command = "microserver"
-args = ["--port", "${PORT}"]
+args = ["--port", "${PORT}", "public"]
 
 [tasks.start]
 description = "Combine the build and serve tasks"
