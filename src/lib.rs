@@ -1,9 +1,15 @@
 #![recursion_limit = "256"]
 
+extern crate wee_alloc;
+
 use wasm_bindgen::prelude::*;
 use js_sys::Date;
 use yew::services::ConsoleService;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
+
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 pub struct Model {
     link: ComponentLink<Self>,
