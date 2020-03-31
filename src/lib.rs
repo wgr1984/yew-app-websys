@@ -43,7 +43,6 @@ impl Component for Model {
                     <Router<AppRoute>
                         render = Router::render(|switch: AppRoute| {
                             match switch {
-                                AppRoute::Index => html! { <MaingPageModel /> },
                                 // AppRoute::A(AllowMissing(route)) => html!{<AModel route = route />},
                                 // AppRoute::B(route) => {
                                 //     let route: b_component::Props = route.into();
@@ -51,6 +50,7 @@ impl Component for Model {
                                 // },
                                 // AppRoute::C => html!{<CModel />},
                                 AppRoute::E(string) => html!{format!("hello {}", string)},
+                                AppRoute::Index => html! { <MaingPageModel /> },
                                 AppRoute::PageNotFound(Permissive(None)) => html!{"Page not found"},
                                 AppRoute::PageNotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
                             }
@@ -67,8 +67,6 @@ impl Component for Model {
 
 #[derive(Debug, Switch, Clone)]
 pub enum AppRoute {
-    #[to = "/"]
-    Index,
     // #[to = "/a{*:inner}"]
     // A(AllowMissing<ARoute>),
     // #[to = "/b{*:inner}"]
@@ -79,11 +77,13 @@ pub enum AppRoute {
     E(String),
     #[to = "/page-not-found"]
     PageNotFound(Permissive<String>),
+    #[to = "/"]
+    Index,
 }
 
-#[derive(Debug, Switch, PartialEq, Clone, Copy)]
-#[to = "/c"]
-pub struct ARoute;
+// #[derive(Debug, Switch, PartialEq, Clone, Copy)]
+// #[to = "/c"]
+// pub struct ARoute;
 
 #[wasm_bindgen(start)]
 pub fn render() {
