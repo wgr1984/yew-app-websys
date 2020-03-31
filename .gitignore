@@ -3,4 +3,5 @@ target/
 .idea/
 Cargo.lock
 public/pkg/
-firebase-debug.log
+firebase-debug.log.firebase
+.firebase/

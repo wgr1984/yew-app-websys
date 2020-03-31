@@ -1,11 +1,14 @@
 #![recursion_limit = "256"]
 
-extern crate wee_alloc;
-
 use wasm_bindgen::prelude::*;
-use js_sys::Date;
 use yew::services::ConsoleService;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
+
+mod material {
+    pub mod topbar;
+}
+
+use material::topbar::*;
 
 // Use `wee_alloc` as the global allocator.
 #[global_allocator]
@@ -57,21 +60,21 @@ impl Component for Model {
 
     fn view(&self) -> Html {
         html! {
-            <div>
-                <nav class="menu">
-                    <button onclick=self.link.callback(|_| Msg::Increment)>
-                        { "Increment" }
-                    </button>
-                    <button onclick=self.link.callback(|_| Msg::Decrement)>
-                        { "Decrement" }
-                    </button>
-                    <button onclick=self.link.batch_callback(|_| vec![Msg::Increment, Msg::Increment])>
-                        { "Increment Twice" }
-                    </button>
-                </nav>
-                <p>{ self.value }</p>
-                <p>{ Date::new_0().to_string().as_string().unwrap() }</p>
-            </div>
+            // <div>
+            //     <nav class="menu">
+            //         <button onclick=self.link.callback(|_| Msg::Increment)>
+            //             { "Increment" }
+            //         </button>
+            //         <button onclick=self.link.callback(|_| Msg::Decrement)>
+            //             { "Decrement" }
+            //         </button>
+            //         <button onclick=self.link.batch_callback(|_| vec![Msg::Increment, Msg::Increment])>
+            //             { "Increment Twice" }
+            //         </button>
+            //     </nav>
+            //     <p>{ self.value }</p>
+            // </div>
+            <Topbar title="What 2 by where?"/>
         }
     }
 }

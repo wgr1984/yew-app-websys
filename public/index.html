@@ -8,11 +8,21 @@
 
     <link rel="icon" type="image/png" href="/public/favicon.png">
 
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        :root {
+            --mdc-theme-primary: #57545d;
+        }
+    </style>
+
     <title>A Title</title>
 
     </head>
 
-    <body>
+    <body style="margin: 0px;">
         <section id="app"></section>
         <script type="module">
             // https://rustwasm.github.io/docs/wasm-bindgen/examples/without-a-bundler.html
